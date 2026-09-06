@@ -1,0 +1,395 @@
+.bingo-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  color: #1e293b;
+}
+
+.bingo-titulo {
+  text-align: center;
+  font-size: 32px;
+  color: #2563eb;
+  margin-bottom: 30px;
+}
+
+.bingo-layout {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Painel de Controle e Sorteio */
+.painel-sorteio {
+  background: #f8fafc;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  width: 320px;
+}
+
+/* Container do Globo */
+.globo-container {
+  position: relative;
+  width: 200px;
+  height: 240px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Suporte de Metal do Globo */
+.globo-suporte {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border: 6px solid #64748b;
+  border-bottom: none;
+  border-radius: 70px 70px 0 0;
+  bottom: 80px;
+  z-index: 1;
+}
+
+.globo-suporte::after {
+  content: '';
+  position: absolute;
+  width: 160px;
+  height: 10px;
+  background-color: #475569;
+  bottom: -10px;
+  left: -16px;
+  border-radius: 4px;
+}
+
+/* A Esfera de Vidro/Acrílico */
+.globo-esfera {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), rgba(30, 41, 59, 0.1));
+  border: 3px solid #94a3b8;
+  border-radius: 50%;
+  bottom: 90px;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Animação de Giro do Globo */
+.globo-esfera.girando {
+  animation: girarGlobo 1.5s infinite linear;
+}
+
+/* Bolinhas menores se movendo dentro do globo */
+.bola-interna {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.b1 {
+  background: #ef4444;
+  top: 20px;
+  left: 30px;
+  animation: pular 0.6s infinite alternate;
+}
+
+.b2 {
+  background: #3b82f6;
+  top: 50px;
+  left: 70px;
+  animation: pular 0.8s infinite alternate-reverse;
+}
+
+.b3 {
+  background: #10b981;
+  top: 80px;
+  left: 40px;
+  animation: pular 0.5s infinite alternate;
+}
+
+.b4 {
+  background: #f59e0b;
+  top: 40px;
+  left: 20px;
+  animation: pular 0.7s infinite alternate-reverse;
+}
+
+.b5 {
+  background: #8b5cf6;
+  top: 70px;
+  left: 75px;
+  animation: pular 0.6s infinite alternate;
+}
+
+/* Tubo de saída onde a bola cai */
+.tubo-saida {
+  position: absolute;
+  bottom: 10px;
+  z-index: 3;
+}
+
+/* A Bola Sorteada Principal (Estilo Realista) */
+.bola-sorteada {
+  width: 65px;
+  height: 65px;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #cbd5e1);
+  border: 3px solid #3b82f6;
+  color: #1e293b;
+  font-size: 28px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  animation: bolaSurgindo 0.4s ease-out;
+}
+
+/* Keyframes das Animações CSS */
+@keyframes girarGlobo {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pular {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  100% {
+    transform: translateY(25px) scale(0.9);
+  }
+}
+
+@keyframes bolaSurgindo {
+  0% {
+    transform: translateY(-50px) scale(0.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.btn-sortear,
+.btn-reiniciar {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background 0.2s;
+}
+
+.btn-sortear {
+  background-color: #2563eb;
+  color: white;
+}
+
+.btn-sortear:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-reiniciar {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+
+.btn-reiniciar:hover {
+  background-color: #cbd5e1;
+}
+
+.historico {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.historico-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 120px;
+  overflow-y: auto;
+  padding: 5px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+}
+
+.bola-historico {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Painel da Cartela do Jogador */
+.painel-cartela {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 2px solid #e2e8f0;
+}
+
+.bingo-letras {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+  font-size: 24px;
+  font-weight: 900;
+  color: #2563eb;
+  margin-bottom: 10px;
+}
+
+.cartela-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 55px);
+  grid-template-rows: repeat(5, 55px);
+  gap: 6px;
+}
+
+.celula-cartela {
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s;
+}
+
+.celula-cartela:hover {
+  background: #e2e8f0;
+}
+
+/* Estado Marcado (Vermelho/Carimbo) */
+.celula-cartela.marcado {
+  background-color: #fef2f2;
+  border-color: #ef4444;
+  color: #ef4444;
+  position: relative;
+}
+
+/* Simula o carimbo redondo em cima do número */
+.celula-cartela.marcado::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 2px dashed rgba(239, 68, 68, 0.4);
+  border-radius: 50%;
+}
+
+/* Botão para gritar Bingo */
+.btn-bingo {
+  width: 100%;
+  margin-top: 15px;
+  padding: 14px;
+  background-color: #22c55e;
+  /* Verde vibrante */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-bingo:hover:not(:disabled) {
+  background-color: #16a34a;
+  transform: scale(1.02);
+}
+
+.btn-bingo:disabled,
+.btn-sortear:disabled {
+  background-color: #cbd5e1;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Banner de vitória chamativo no topo */
+.banner-vitoria {
+  background: linear-gradient(45deg, #eab308, #f97316);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  animation: piscar 1s infinite alternate;
+  box-shadow: 0 4px 15px rgba(234, 179, 8, 0.4);
+}
+
+/* Efeito dourado na cartela vencedora */
+.cartela-vencedora .celula-cartela.marcado {
+  background-color: #fef9c3 !important;
+  border-color: #eab308 !important;
+  color: #ca8a04 !important;
+}
+
+@keyframes piscar {
+  from {
+    opacity: 0.85;
+    transform: scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.btn-automatico {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 10px;
+  background-color: #f59e0b;
+  /* Amarelo/Laranja */
+  color: white;
+  transition: background 0.2s;
+}
+
+.btn-automatico:hover:not(:disabled) {
+  background-color: #d97706;
+}
+
+.btn-automatico.ativo {
+  background-color: #ef4444;
+  /* Fica vermelho se estiver ativo para indicar parada */
+}
+
+.btn-automatico.ativo:hover {
+  background-color: #dc2626;
+}
